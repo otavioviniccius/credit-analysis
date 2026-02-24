@@ -64,7 +64,7 @@ def generate_synthetic(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
     pd_inad = 1 / (1 + np.exp(-logit))
     inadimplente = rng.binomial(1, _clip(pd_inad, 0.01, 0.95))
 
-    df = pd.DataFrame({
+    return pd.DataFrame({
         "idade": idade,
         "estado_civil": estado_civil,
         "escolaridade": escolaridade,
@@ -79,4 +79,3 @@ def generate_synthetic(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
         "pct_renda_comprometida": pct_renda_comprometida.round(4),
         "inadimplente": inadimplente,
     })
-    return df
