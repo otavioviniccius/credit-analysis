@@ -2,8 +2,15 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-def _clip(a, lo, hi):
-    return np.minimum(np.maximum(a, lo), hi)
+
+def _clip(a, lo=None, hi=None):
+    if lo is not None:
+        a = np.maximum(a, lo)
+    if hi is not None:
+        a = np.minimum(a, hi)
+    return a
+
+
 
 def generate_synthetic(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
     rng = np.random.default_rng(seed)
